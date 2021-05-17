@@ -13,7 +13,7 @@ nav_order: 3
 >
 > Ela apresenta também um fascínio pelas novas tecnologias e gostava de conseguir automatizar algumas tarefas simples do seu dia-a-dia.
 
-Ideias: ela deseja ligar o forno remotamente, ela deseja abrir uma janela remotamente para arejar a sua casa (pode ser apenas para entrar luz como para diminuir a temperatura)
+<!-- Ideias: ela deseja ligar o forno remotamente, ela deseja abrir uma janela remotamente para arejar a sua casa (pode ser apenas para entrar luz como para diminuir a temperatura) -->
 
 ## Eugénio:
 > O Eugénio é um homem reformado de 83 anos, é viúvo, possui uma filha de 57 anos.
@@ -22,14 +22,14 @@ Ideias: ela deseja ligar o forno remotamente, ela deseja abrir uma janela remota
 > 
 > Ele gosta também de ir ao bailarico da aldeia aos fins de semana, adorando ouvir a toda a hora, como lazer, as músicas da sua juventude.
 
-Ideias: ligar automaticamente a televisão na hora da bola, quando ele entra na cozinha ativar o rádio com a sua playlist já definida
+<!-- Ideias: ligar automaticamente a televisão na hora da bola, quando ele entra na cozinha ativar o rádio com a sua playlist já definida -->
 
 ## Diana:
 > A Diana é uma mulher casada de 28 anos sem filhos, que trabalha como modelo.
 > 
 > Ela adora cuidar de si mesma. Como tal faz de tudo para manter uma vida extremamente saudável. Gosta de se deitar cedo, sempre à mesma hora, e fazer exercício físico sendo sempre muito cautelosa.
 
-Ideias: ver o histórico dos valores da qualidade do ar, programar as luzes para reduzirem a luminosidade a partir de uma hora desejada
+<!-- Ideias: ver o histórico dos valores da qualidade do ar, programar as luzes para reduzirem a luminosidade a partir de uma hora desejada -->
 
 # User Stories
 
