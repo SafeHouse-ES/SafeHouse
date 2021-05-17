@@ -39,3 +39,4 @@ Como Diana, gostava de todos os dias poder acordar com a luz do sol, e à noite 
 - Registar novo dispositivo
 - Definir nova ordem automática (quando o valor de <sensor> for <valor>, alterar <dispositivo> para <valor>
 - Definir novo alerta automático (quando o valor de <sensor> for <maior/menor> que <valor>, enviar alerta)
+-->
