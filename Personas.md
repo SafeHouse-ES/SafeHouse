@@ -1,22 +1,27 @@
 # Personas
 ## Júlia
 
-	A Júlia é uma mulher de 34 anos, possui dois filhos de 10 e 13 anos e trabalha como professora numa escola primária.
-	Ao longo da semana apresenta uma vida muito atarefada visto que, ambos os seus filhos possuem atividades extracurriculares e ainda têm o hábito de preparar as aulas do dia seguinte. Em casa é também ela que faz a maior parte das tarefas domésticas, incluindo cozinhar e arrumar a casa.
-	Ela apresenta também um fascínio pelas novas tecnologias e gostava de conseguir automatizar algumas tarefas simples do seu dia-a-dia.
+> A Júlia é uma mulher de 34 anos, possui dois filhos de 10 e 13 anos e trabalha como professora numa escola primária.
+> 
+> Ao longo da semana apresenta uma vida muito atarefada visto que, ambos os seus filhos possuem atividades extracurriculares e ainda têm o hábito de preparar as aulas do dia seguinte. Em casa é também ela que faz a maior parte das tarefas domésticas, incluindo cozinhar e arrumar a casa.
+>
+> Ela apresenta também um fascínio pelas novas tecnologias e gostava de conseguir automatizar algumas tarefas simples do seu dia-a-dia.
 
 Ideias: ela deseja ligar o forno remotamente, ela deseja abrir uma janela remotamente para arejar a sua casa (pode ser apenas para entrar luz como para diminuir a temperatura)
 
 ## Eugénio:
-	O Eugénio é um homem de 83 anos, é viúvo, possui uma filha de 57 anos e reformado.
-	Têm como hábito regar o seu quintal todos os dias e não perde um jogo do seu Sporting.
-	Ele gosta também de ir ao bailarico da aldeia aos fim de semana, adorando ouvir a toda a hora como lazer as músicas da sua juventude.
+> O Eugénio é um homem de 83 anos, é viúvo, possui uma filha de 57 anos e reformado.
+> 
+> Têm como hábito regar o seu quintal todos os dias e não perde um jogo do seu Sporting.
+> 
+> Ele gosta também de ir ao bailarico da aldeia aos fim de semana, adorando ouvir a toda a hora como lazer as músicas da sua juventude.
 
 Ideias: ligar automaticamente a televisão na hora da bola, quando ele entra na cozinha ativar o rádio com a sua playlist já definida) 
 
 ## Diana:
-	A Diana é uma mulher de 28 anos, é casada, não possui filhos, e trabalha como modelo.
-	Ela adora cuidar de si mesma, como tal faz de tudo para manter uma vida extremamente saudável. Gosta de se deitar cedo sempre à mesma hora e fazer exercício físico sendo sempre muito cautelosa.
+> A Diana é uma mulher de 28 anos, é casada, não possui filhos, e trabalha como modelo.
+> 
+> Ela adora cuidar de si mesma, como tal faz de tudo para manter uma vida extremamente saudável. Gosta de se deitar cedo sempre à mesma hora e fazer exercício físico sendo sempre muito cautelosa.
 
 Ideias: ver o histórico dos valores da qualidade do ar, programar as luzes para reduzirem a luminosidade a partir de uma hora desejada)  
 
