@@ -1,3 +1,9 @@
+---
+layout: default
+title: Personas, User Stories and Use Cases
+nav_order: 3
+---
+
 # Personas
 ## Júlia
 
