@@ -83,7 +83,7 @@ pipeline {
                     sshCommand remote: remote, command: "docker rm esp31_reactapp"
                     sshCommand remote: remote, command: "docker rmi 192.168.160.48:5000/esp31/reactapp"
                     sshCommand remote: remote, command: "docker pull 192.168.160.48:5000/esp31/reactapp"
-                    sshCommand remote: remote, command: "docker run -it -d -v ~/react:/app -v /app/node_modules -p 31004:3000 -e CHOKIDAR_USEPOLLING=true --name esp31_reactapp 192.168.160.48:5000/esp31/reactapp"
+                    sshCommand remote: remote, command: "docker run -it -d -p 31004:3000 -e CHOKIDAR_USEPOLLING=true --name esp31_reactapp 192.168.160.48:5000/esp31/reactapp"
                 }
                   
                 
