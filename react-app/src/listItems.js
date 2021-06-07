@@ -13,30 +13,30 @@ import {BrowserRouter as Router, Link} from "react-router-dom";
 
 export const mainListItems = (
   <div>
-    
-      <Link to="/" style={{ textDecoration: 'none', color: 'black'}}>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-      </Link>
-      <Link to="/historic" style={{ textDecoration: 'none', color: 'black'}}>
-        <ListItem button containerElement={<Link to="/historic" />}>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Historic values" />
-        </ListItem>
-      </Link>
+    <Link to="/" style={{ textDecoration: 'none', color: 'black'}}>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+    </Link>
+    <Link to="/historic" style={{ textDecoration: 'none', color: 'black'}}>
+      <ListItem button containerElement={<Link to="/historic" />}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Historic values" />
+      </ListItem>
+    </Link>
+    <Link to="/settings" style={{ textDecoration: 'none', color: 'black'}}>
       <ListItem button>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Sensor settings" />
       </ListItem>
-    
+    </Link>
   </div>
 );
 

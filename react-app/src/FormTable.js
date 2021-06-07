@@ -29,9 +29,6 @@ function preventDefault(event) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(10),
-  },
   paper: {
     padding: theme.spacing(2),
     display: 'flex',

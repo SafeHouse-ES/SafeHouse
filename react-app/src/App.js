@@ -7,6 +7,7 @@ import { BrowserRouter as Router,
 import Navbar from './Navbar';
 import Dashboard from './Dashboard';  
 import FormTable from './FormTable';
+import SensorSettings from './SensorSettings';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,6 +25,7 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <Route path="/historic" component={FormTable} />
+                    <Route path="/settings" component={SensorSettings} />
                 </Switch>
             </div>
         </Router>
