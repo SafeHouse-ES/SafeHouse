@@ -87,6 +87,9 @@ pipeline {
                     sshCommand remote: remote, command: "docker create -p 31003:8080 --name esp31_dataprocessor 192.168.160.48:5000/esp31/dataprocessor"
                     sshCommand remote: remote, command: "docker start esp31_dataprocessor"
 
+                    sshCommand remote: remote, command: "docker stop esp31_management"
+                    sshCommand remote: remote, command: "docker rm esp31_management"
+                    sshCommand remote: remote, command: "docker rmi 192.168.160.48:5000/esp31/managementapi"
                     sshCommand remote: remote, command: "docker pull 192.168.160.48:5000/esp31/managementapi"
                     sshCommand remote: remote, command: "docker create -p 31005:8080 --name esp31_management 192.168.160.48:5000/esp31/managementapi"
                     sshCommand remote: remote, command: "docker start esp31_management"
