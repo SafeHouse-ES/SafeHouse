@@ -10,5 +10,8 @@ COPY package-lock.json ./
 RUN npm i
 # add app
 COPY . ./
+# ownership
+RUN chown -R node /app/node_modules
+USER node
 # start app
 CMD ["npm", "start"]
