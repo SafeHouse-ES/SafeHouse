@@ -16,6 +16,9 @@ pipeline {
                 dir('data-processor'){
                     sh 'mvn clean install -DskipTests'
                 }
+		dir('management'){
+                    sh 'mvn clean install -DskipTests'
+                }
             }
         }
 
@@ -44,6 +47,9 @@ pipeline {
                 dir('data-processor'){
                     sh 'mvn deploy -f pom.xml -s settings.xml'
                 }
+		dir('management'){
+                    sh 'mvn deploy -f pom.xml -s settings.xml'
+                }
             }
         }
 
@@ -52,9 +58,11 @@ pipeline {
                 script{
                       docker.withRegistry('http://192.168.160.48:5000') {
                             def dataproc = docker.build("esp31/dataprocessor", "./data-processor")
+                            def manag = docker.build("esp31/managementapi", "./management")
                             def reactapp = docker.build("esp31/reactapp", "./react-app")
                             // Push the container to the custom Registry 
                             dataproc.push()
+                            manag.push()
                             reactapp.push()
                     }
                 }
@@ -78,6 +86,10 @@ pipeline {
                     sshCommand remote: remote, command: "docker pull 192.168.160.48:5000/esp31/dataprocessor"
                     sshCommand remote: remote, command: "docker create -p 31003:8080 --name esp31_dataprocessor 192.168.160.48:5000/esp31/dataprocessor"
                     sshCommand remote: remote, command: "docker start esp31_dataprocessor"
+
+                    sshCommand remote: remote, command: "docker pull 192.168.160.48:5000/esp31/managementapi"
+                    sshCommand remote: remote, command: "docker create -p 31005:8080 --name esp31_management 192.168.160.48:5000/esp31/managementapi"
+                    sshCommand remote: remote, command: "docker start esp31_managementapi"
 
                     sshCommand remote: remote, command: "docker stop esp31_reactapp"
                     sshCommand remote: remote, command: "docker rm esp31_reactapp"
