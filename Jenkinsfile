@@ -10,8 +10,21 @@ pipeline {
         jdk 'jdk11'
     }
     stages {
+        
+        stage ('Parameters'){
+            steps {
+                script {
+                    properties([parameters([choice(choices: ['prod', 'dev'], description: 'Environment parameter', name: 'env')])])
+                }
+            }
+        }
 
         stage ('Build') {
+            when {
+                expression { 
+                   return params.env == 'prod' || params.env == 'dev'
+                }
+            }
             steps { 
                 dir('data-processor'){
                     sh 'mvn clean install -DskipTests'
@@ -23,6 +36,11 @@ pipeline {
         }
 
         stage('Integration tests') {
+            when {
+                expression { 
+                   return params.env == 'prod' || params.env == 'dev'
+                }
+            }
             steps{    
                 dir('data-processor'){
                     script{
@@ -43,6 +61,11 @@ pipeline {
         }
 
         stage ('Maven-Deploy') {
+            when {
+                expression { 
+                   return params.env == 'prod'
+                }
+            }
             steps{
                 dir('data-processor'){
                     sh 'mvn deploy -f pom.xml -s settings.xml'
@@ -54,6 +77,11 @@ pipeline {
         }
 
         stage('Publish-Image'){
+            when {
+                expression { 
+                   return params.env == 'prod'
+                }
+            }
             steps{
                 script{
                       docker.withRegistry('http://192.168.160.48:5000') {
@@ -70,6 +98,11 @@ pipeline {
         }
 
         stage('Deployment') { 
+            when {
+                expression { 
+                   return params.env == 'prod'
+                }
+            }
             steps {
                  withCredentials([usernamePassword(credentialsId: 'esp31_ssh_credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     
