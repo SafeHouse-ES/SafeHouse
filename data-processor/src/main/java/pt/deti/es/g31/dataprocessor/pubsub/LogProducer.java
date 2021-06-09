@@ -15,13 +15,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 public class LogProducer {
 
     private static final Logger logger = LoggerFactory.getLogger(LogProducer.class);
-    private static final String TOPIC = "es31_sensordata_dataprocessor_logs";
+    private static final String TOPIC = "es31_dataprocessor_logs";
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message) {
-        logger.info(String.format("%s", message));
+        logger.info(String.format("{\"message\":\"%s\"", message));
         this.kafkaTemplate.send(TOPIC, message);
     }
 }
