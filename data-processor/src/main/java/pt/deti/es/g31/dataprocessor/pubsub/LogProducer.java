@@ -22,6 +22,6 @@ public class LogProducer {
 
     public void sendMessage(String message) {
         logger.info(String.format("%s", message));
-        this.kafkaTemplate.send(TOPIC, String.format("{\"message\":\"%s\"}", message));
+        this.kafkaTemplate.send(TOPIC, String.format("{\"message\":\"%s\", \"@timestamp\":%d}", message, System.currentTimeMillis()));
     }
 }
