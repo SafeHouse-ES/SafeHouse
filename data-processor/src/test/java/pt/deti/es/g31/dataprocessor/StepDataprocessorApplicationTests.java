@@ -24,37 +24,30 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 
 public class StepDataprocessorApplicationTests extends DataprocessorApplicationTests{
-    @Given("the alarm is generated")
-    public void the_alarm_is_generated() throws Throwable{
+
+    HttpHeaders headers;
+    HttpEntity entity;
+
+    @Given("the kitchen luminosity sensor generates an alert")
+    public void the_kitchen_luminosity_sensor_generates_an_alert() throws Throwable{
         producer.send(topic, "{\"alert_state\" : \"alerting\", \"description\" : \"Kitchen Dark Alert - Too dark in Kitchen\"}");
     }
 
     @When("the alert is consumed")
     public void the_alert_is_consumed() throws Throwable{
+        //wait for the application to produce the response
         consumer.getLatch().await(10000, TimeUnit.MILLISECONDS);
-        String message = consumer.getPayload();
-
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode actualObj = null;
-        try {
-            actualObj = mapper.readTree(message);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        pt.deti.es.g31.dataprocessor.models.AlertNotification not = new AlertNotification(System.currentTimeMillis() / 1000L, actualObj.get("alert_state").asText(), actualObj.get("description").asText());
-        TempRepository.rep.add(not);
-        assertEquals("alerting", not.getAlertState());
-        //assertEquals(1, 2);
     }
 
 
-    @Then("the alert should be available in the /alerts endpoint")
+    @Then("the type of alert should be available in the /alerts endpoint")
     public void the_alert_should_be_available_in_the_endpoint() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
+        headers = new HttpHeaders();
+        entity = new HttpEntity(headers);
 
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/alerts?seg=60", HttpMethod.GET, entity, String.class);
+
+        //Parse api response in order to validate the fields
         int size_a = 0;
         JSONObject json = null;
         try {
@@ -68,22 +61,19 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         assertEquals(1, size_a);
         assertEquals("alerting", state);
         assertEquals(200, result.getStatusCodeValue());
-        //assertEquals(1, 2);
     }
 
     @When("users want to get the data about the metrics")
     public void users_want_to_get_the_data_about_the_metrics() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-        //assertEquals(1, 2);
+        headers = new HttpHeaders();
+        entity = new HttpEntity(headers);
     }
 
     @Then("the list with the metrics keys is returned")
     public void the_list_with_the_metrics_keys_is_returned() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/metrics", HttpMethod.GET, entity, String.class);
+
+        //Parse api response in order to validate the fields
         int size_a = 0;
         JSONObject json = null;
         try {
@@ -97,9 +87,6 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
 
     @And("the api returns a success status")
     public void the_api_returns_a_success_status() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/metrics", HttpMethod.GET, entity, String.class);
         assertEquals(200, result.getStatusCodeValue());
     }
@@ -111,17 +98,15 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
 
     @When("the user requests sensors data")
     public void the_user_requests_sensors_data() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-        //assertEquals(1, 2);
+        headers = new HttpHeaders();
+        entity = new HttpEntity(headers);
     }
 
     @Then("the list with the measurements from all the sensors is returned")
     public void the_list_with_the_measurements_from_all_the_sensors_is_returned() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/all", HttpMethod.GET, entity, String.class);
+
+        //Parse api response in order to validate the fields
         int size_a = 0;
         JSONObject json = null;
         try {
@@ -136,9 +121,6 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
 
     @And("the api returns a success status 200")
     public void the_api_returns_a_success_status_200() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/all", HttpMethod.GET, entity, String.class);
         assertEquals(200, result.getStatusCodeValue());
     }
@@ -148,12 +130,17 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         //For Readability only
     }
 
+    @When("the user requests kitchen sensors data")
+    public void the_user_requests_kitchen_sensors_data() throws Throwable{
+        headers = new HttpHeaders();
+        entity = new HttpEntity(headers);
+    }
+
     @Then("the list with the measurements from the sensor specified is returned")
     public void the_list_with_the_measurements_from_the_sensor_specified_is_returned() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/sensor/all?sensorId=Kitchen", HttpMethod.GET, entity, String.class);
+
+        //Parse api response in order to validate the fields
         int size_a = 0;
         JSONObject json = null;
         JSONArray json_a = null;
@@ -164,8 +151,8 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
             e.printStackTrace();
         }
 
+        //Test assert conditions
         Assert.assertTrue(size_a  >  0);
-
         for(int i = 0; i<size_a; i++){
             json = (JSONObject) json_a.get(i);
             String id = (String) json.get("id");
@@ -176,9 +163,6 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
 
     @And("the api returns success status 200")
     public void the_api_returns_success_status_200() throws Throwable{
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/sensor/all?sensorId=Kitchen", HttpMethod.GET, entity, String.class);
         assertEquals(200, result.getStatusCodeValue());
     }
