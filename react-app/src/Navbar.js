@@ -13,7 +13,10 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Popover from '@material-ui/core/Popover';
+import Paper from '@material-ui/core/Paper';
 import { mainListItems, secondaryListItems } from './listItems';
+import http from './http-api';
 
 const drawerWidth = 240;
 
@@ -86,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: 5,
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
@@ -94,17 +97,118 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 200,
   },
+  notifs: {
+    padding: 3,
+  },
 }));
 
 export default function Navbar() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [notifs, setNotifs] = React.useState('');
+    const [timeTest, setTimeTest] = React.useState('');
+    const [time, setTime] = React.useState('');
+
+    const timeNowSecs = Math.round(Date.parse(time) / 1000);
+    var timeDiff = [];
+
+    React.useEffect(() => {
+      setTime(new Date().toISOString())
+      
+      const interval=setInterval(()=>{
+        setTime(new Date().toISOString())
+      },5000)
+  
+      return()=>clearInterval(interval)
+    }, [])
+
+    // React.useEffect(() => {
+    //   setTimeTest(new Date().toISOString())
+      
+    //   const interval=setInterval(()=>{
+    //     setTimeTest(new Date().toISOString())
+    //   },60000)
+  
+    //   return()=>clearInterval(interval)
+    // }, [])
+
+    // const notifTest = [ {"timestamp": timeNowSecs - 27, "alert_state": "Notificão 1", "description": "Valor temperatura acima"},
+    //                     {"timestamp": timeNowSecs - 61, "alert_state": "Notificão 2", "description": "Valor temperatura acima"},
+    //                     {"timestamp": timeNowSecs - 126, "alert_state": "Notificão 3", "description": "Valor temperatura acima"},
+    //                     {"timestamp": timeNowSecs - 3601, "alert_state": "Notificão 4", "description": "Valor temperatura acima"},
+    //                     {"timestamp": timeNowSecs - 7210, "alert_state": "Notificão 5", "description": "Valor temperatura acima"}
+    //                   ]
+
+    const getNotifs = async () => {
+      http.get('/alerts?seg=60000')
+          .then((response) => {
+            setNotifs(response.data);
+          })
+          .catch(error => console.log("Error: ${error}"));
+    }
+
+    React.useEffect(() => {
+      getNotifs();
+      
+      const interval=setInterval(()=>{
+        getNotifs();
+      },10000)
+  
+      return()=>clearInterval(interval)
+    }, [])
+
+    for(let i = 0; i < notifs.length; i++) {
+      let diff = timeNowSecs - notifs[i].timestamp;
+      if(diff < 60) {
+        let val = diff;
+        let metric;
+        if(diff == 1) {
+          metric = "second";  
+        } else {
+          metric = "seconds";
+        }
+        timeDiff.push({val: val, metric: metric})
+      } else if(diff < 3600) {
+        let minutes = Math.round(diff / 60);
+        let val = minutes;
+        let metric;
+        if(minutes == 1) {
+          metric = "minute";
+        } else {
+          metric = "minutes";
+        }
+        timeDiff.push({val: val, metric: metric})
+      } else {
+        let hours = Math.floor(diff / 3600);
+        let val = hours;
+        let metric;
+        if(hours == 1) {
+          metric = "hour";
+        } else {
+          metric = "hours";
+        }
+        timeDiff.push({val: val, metric: metric})
+      }
+      
+    }
+    
     const handleDrawerOpen = () => {
         setOpen(true);
     };
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const openNotif = Boolean(anchorEl);
+    const id = openNotif ? 'simple-popover' : undefined;
     
     return(
         <div className={classes.root}>
@@ -123,11 +227,42 @@ export default function Navbar() {
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                     SafeHouse Dashboard
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                    <NotificationsIcon />
-                    </Badge>
-                </IconButton>
+                <div>
+                  <IconButton color="inherit" aria-describedby={id} variant="contained" onClick={handleClick}>
+                      <Badge badgeContent={notifs ? notifs.length : 0} color="secondary">
+                      <NotificationsIcon/>
+                      </Badge>
+                  </IconButton>
+                  
+                        {notifs && (
+                          <Popover
+                            id={id}
+                            open={openNotif}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                              vertical: 'bottom',
+                              horizontal: 'right',
+                            }}
+                            transformOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                            }}
+                          >  
+                            <Paper className={classes.paper}>
+                              {notifs.map((notif, ind) => (
+                                <div>
+                                  <Typography className={classes.notifs} component="p">{notif.description}</Typography>
+                                  <Typography color="textSecondary" className={classes.depositContext}>
+                                    {timeDiff[ind].val +" "+ timeDiff[ind].metric} ago
+                                  </Typography>
+                                  <Divider />
+                                </div>
+                              ))}
+                            </Paper>
+                          </Popover>  
+                        )}
+                </div>
                 </Toolbar>
             </AppBar>
             <Drawer
