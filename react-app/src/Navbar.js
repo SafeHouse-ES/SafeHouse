@@ -252,7 +252,7 @@ export default function Navbar() {
                             <Paper className={classes.paper}>
                               {notifs.map((notif, ind) => (
                                 <div>
-                                  <Typography className={classes.notifs} component="p">{notif.description}</Typography>
+                                  <Typography className={classes.notifs} component="p">{notif.description} - {notif.alert_state}</Typography>
                                   <Typography color="textSecondary" className={classes.depositContext}>
                                     {timeDiff[ind].val +" "+ timeDiff[ind].metric} ago
                                   </Typography>
