@@ -29,7 +29,7 @@ pipeline {
                 dir('data-processor'){
                     sh 'mvn clean install -DskipTests'
                 }
-		dir('management'){
+		        dir('management'){
                     sh 'mvn clean install -DskipTests'
                 }
             }
@@ -43,6 +43,21 @@ pipeline {
             }
             steps{    
                 dir('data-processor'){
+                    script{
+                        try {
+                            sh "mvn test -Pintegration"
+                        } catch(err) {
+                            step([$class: 'JUnitResultArchiver', testResults: 
+                            '**/target/surefire-reports/TEST-' 
+                                + '*IntegrationTest.xml'])
+                            throw err
+                        }
+                    }
+                    step([$class: 'JUnitResultArchiver', testResults: 
+                        '**/target/surefire-reports/TEST-' 
+                            + '*IntegrationTest.xml'])    
+                }
+                dir('management'){
                     script{
                         try {
                             sh "mvn test -Pintegration"
