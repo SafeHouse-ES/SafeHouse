@@ -14,7 +14,6 @@ public class TestCommandConsumer {
 
     @KafkaListener(topics = "es31_management_commands")
     public void receive(ConsumerRecord<?, ?> consumerRecord) {
-        payload = "\""+(String) consumerRecord.value()+"\"";
         latch.countDown();
     }
 
