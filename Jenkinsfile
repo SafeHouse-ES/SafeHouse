@@ -42,21 +42,6 @@ pipeline {
                 }
             }
             steps{    
-                dir('data-processor'){
-                    script{
-                        try {
-                            sh "mvn test -Pintegration"
-                        } catch(err) {
-                            step([$class: 'JUnitResultArchiver', testResults: 
-                            '**/target/surefire-reports/TEST-' 
-                                + '*IntegrationTest.xml'])
-                            throw err
-                        }
-                    }
-                    step([$class: 'JUnitResultArchiver', testResults: 
-                        '**/target/surefire-reports/TEST-' 
-                            + '*IntegrationTest.xml'])    
-                }
                 dir('management'){
                     script{
                         try {
@@ -72,6 +57,22 @@ pipeline {
                         '**/target/surefire-reports/TEST-' 
                             + '*IntegrationTest.xml'])    
                 }
+                dir('data-processor'){
+                    script{
+                        try {
+                            sh "mvn test -Pintegration"
+                        } catch(err) {
+                            step([$class: 'JUnitResultArchiver', testResults: 
+                            '**/target/surefire-reports/TEST-' 
+                                + '*IntegrationTest.xml'])
+                            throw err
+                        }
+                    }
+                    step([$class: 'JUnitResultArchiver', testResults: 
+                        '**/target/surefire-reports/TEST-' 
+                            + '*IntegrationTest.xml'])    
+                }
+                
             }
         }
 
