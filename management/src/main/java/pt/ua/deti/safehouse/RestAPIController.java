@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pt.ua.deti.safehouse.data.Config;
 import pt.ua.deti.safehouse.data.ConfigRepo;
-import pt.ua.deti.safehouse.data.DBAccess;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ public class RestAPIController {
     @Autowired
     private ConfigRepo repo;
 
-    @CrossOrigin
     @GetMapping("/test")
     public String test() {
         return "HelloWorld!";
@@ -22,14 +20,12 @@ public class RestAPIController {
 
     // --- GET ---
 
-    @CrossOrigin
     @GetMapping("/single")
     public Config single(long id) {
         Config single = repo.findById(id);
         return single;
     }
 
-    @CrossOrigin
     @GetMapping("/all")
     @ResponseBody
     public List<Config> all() {
@@ -37,7 +33,6 @@ public class RestAPIController {
         return lst;
     }
 
-    @CrossOrigin
     @GetMapping("/room")
     @ResponseBody
     public List<Config> room(String id) {
@@ -45,7 +40,6 @@ public class RestAPIController {
         return lst;
     }
 
-    @CrossOrigin
     @GetMapping("/metric")
     @ResponseBody
     public List<Config> sensor(String metric) {
@@ -53,7 +47,6 @@ public class RestAPIController {
         return lst;
     }
 
-    @CrossOrigin
     @GetMapping("/device")
     @ResponseBody
     public List<Config> device(String id) {
@@ -63,7 +56,6 @@ public class RestAPIController {
 
     // --- POST ---
 
-    @CrossOrigin
     @PostMapping("/add")
     public void add(@RequestParam String room,@RequestParam String metric,@RequestParam Double sVal,@RequestParam Short order,@RequestParam String device,@RequestParam Double dVal) {
         System.out.printf("--> %s, %s, %f, %d, %s, %f\n", room, metric, sVal, order, device, dVal);
@@ -71,6 +63,12 @@ public class RestAPIController {
 
         // TODO: change
         repo.save(cfg);
+    }
+
+    @PostMapping("/delete")
+    public void delete(@RequestParam long id) {
+        Config cfg = repo.findById(id);
+        repo.delete(cfg);
     }
 
 }
