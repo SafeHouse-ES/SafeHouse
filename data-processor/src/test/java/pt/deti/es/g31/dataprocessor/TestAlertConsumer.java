@@ -19,7 +19,7 @@ public class TestAlertConsumer {
     private String payload = null;
     private CountDownLatch latch = new CountDownLatch(1);
 
-    @KafkaListener(topics = "test-topic-alert")
+    @KafkaListener(topics = "esp31-test-alert")
     public void receive(ConsumerRecord<?, ?> consumerRecord) {
         payload = (String) consumerRecord.value();
         latch.countDown();

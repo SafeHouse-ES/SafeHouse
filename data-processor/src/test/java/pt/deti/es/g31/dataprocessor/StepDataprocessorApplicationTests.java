@@ -30,7 +30,7 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
 
     @Given("the kitchen luminosity sensor generates an alert")
     public void the_kitchen_luminosity_sensor_generates_an_alert() throws Throwable{
-        producer.send("test-topic-alert", "{\"alert_state\" : \"alerting\", \"description\" : \"Kitchen Dark Alert - Too dark in Kitchen\"}");
+        producer.send("esp31-test-alert", "{\"alert_state\" : \"alerting\", \"description\" : \"Kitchen Dark Alert - Too dark in Kitchen\"}");
     }
 
     @When("the alert is consumed")
@@ -45,8 +45,21 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         headers = new HttpHeaders();
         entity = new HttpEntity(headers);
 
-        ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/alerts?seg=60", HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/alerts?seg=15", HttpMethod.GET, entity, String.class);
 
+        //Parse api response in order to validate the fields
+        int size_a = 0;
+        JSONObject json = null;
+        try {
+            JSONArray json_a = (JSONArray)new JSONParser().parse(result.getBody());
+            json = (JSONObject) json_a.get(0);
+            size_a = json_a.size();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String state =(String)json.get("alert_state");
+        assertEquals(1, size_a);
+        assertEquals("alerting", state);
         assertEquals(200, result.getStatusCodeValue());
     }
 
