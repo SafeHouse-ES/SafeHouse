@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pt.ua.deti.safehouse.data.Config;
 import pt.ua.deti.safehouse.data.ConfigRepo;
-import pt.ua.deti.safehouse.data.DBAccess;
 
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class RestAPIController {
     }
 
     // --- GET ---
-
     @CrossOrigin
     @GetMapping("/single")
     public Config single(long id) {
@@ -62,7 +60,6 @@ public class RestAPIController {
     }
 
     // --- POST ---
-
     @CrossOrigin
     @PostMapping("/add")
     public void add(@RequestParam String room,@RequestParam String metric,@RequestParam Double sVal,@RequestParam Short order,@RequestParam String device,@RequestParam Double dVal) {
@@ -71,6 +68,13 @@ public class RestAPIController {
 
         // TODO: change
         repo.save(cfg);
+    }
+
+    @CrossOrigin
+    @PostMapping("/delete")
+    public void delete(@RequestParam long id) {
+        Config cfg = repo.findById(id);
+        repo.delete(cfg);
     }
 
 }

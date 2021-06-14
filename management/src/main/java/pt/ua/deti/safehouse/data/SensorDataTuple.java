@@ -4,8 +4,6 @@ package pt.ua.deti.safehouse.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class SensorDataTuple {
 
     private long timestamp;
@@ -18,27 +16,30 @@ public class SensorDataTuple {
 
     private Boolean movement;
 
-    @JsonProperty("timestamp")
+    public SensorDataTuple(long timestamp, String sensorId, Double temperature, Double luminosity, Boolean movement) {
+        this.timestamp = timestamp;
+        this.sensorId = sensorId;
+        this.temperature = temperature;
+        this.luminosity = luminosity;
+        this.movement = movement;
+    }
+
     public String getTimestamp() {
         return sensorId;
     }
 
-    @JsonProperty("id")
     public String getId() {
         return sensorId;
     }
 
-    @JsonProperty("temperature")
     public Double getTemperature() {
         return temperature;
     }
 
-    @JsonProperty("luminosity")
     public Double getLuminosity() {
         return luminosity;
     }
 
-    @JsonProperty("movement")
     public Boolean getMovement() {
         return movement;
     }

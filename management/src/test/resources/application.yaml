@@ -1,0 +1,9 @@
+
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      group-id: group_id
+test:
+  topic_sensor: test-topic-alert
+  topic_cmd: test-topic-cmd
