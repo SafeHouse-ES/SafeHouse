@@ -16,6 +16,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,8 +47,20 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+// const settingsTest = [
+//     {"id": 1, "roomID": "1", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 2, "roomID": "2", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 3, "roomID": "3", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 4, "roomID": "4", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 5, "roomID": "5", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 6, "roomID": "6", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 7, "roomID": "7", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+//     {"id": 8, "roomID": "8", "metric": "Temperature", "sensorValue": 120, "order": 1, "deviceID": "ab", "deviceValue": 1},
+// ]
+
 
 export default function SensorSettings() {
+    
     const classes = useStyles();
     const [room, setRoom] = React.useState('');
     const [metric, setMetric] = React.useState('');
@@ -64,10 +77,6 @@ export default function SensorSettings() {
             })
             .catch(error => console.log("Error: ${error}"));
     }
-
-    React.useEffect(() => {
-        getSettings();
-    }, []);
     
     const handleChangeRoom = (event) => {
         setRoom(event.target.value);
@@ -80,16 +89,28 @@ export default function SensorSettings() {
     };
 
     const postSetting = async () => {
-
         axios.post(`http://192.168.160.87:31005/add?room=${room}&metric=${metric}&sVal=${sVal}&order=${order}&device=${device}&dVal=${dVal}`)
-            .then(response => console.log(response.data.id));
-            
-      }
+            .then(response => console.log(response.data.id));         
+    }
+
+    const postDeleteSetting = async (id) => {
+        axios.post(`http://192.168.160.87:31005/delete?id=${id}`)
+            .then(response => console.log(response.data.id));      
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         postSetting();
     }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        postDeleteSetting(e.currentTarget.value);
+    }
+
+    React.useEffect(() => {
+        getSettings();
+    }, [postSetting, postDeleteSetting]);
    
     return(
         <div>
@@ -106,18 +127,20 @@ export default function SensorSettings() {
                         <TableCell>Value Limit</TableCell>
                         <TableCell>Higher/Lower</TableCell>
                         <TableCell>Device</TableCell>
-                        <TableCell align="right">Command</TableCell>
+                        <TableCell>Command</TableCell>
+                        <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody>   
                         {settings && settings.map((row) => (
-                        <TableRow key={row.id}>
+                        <TableRow key={row.id}> 
                             <TableCell>{row.roomID}</TableCell>
                             <TableCell>{row.metric}</TableCell>
                             <TableCell>{row.sensorValue}</TableCell>
                             <TableCell>{row.order ? "Higher" : "Lower"}</TableCell>
                             <TableCell>{row.deviceID}</TableCell>
-                            <TableCell align="right">{row.deviceValue ? 'Activate' : 'Deactivate'}</TableCell>
+                            <TableCell>{row.deviceValue ? 'Activate' : 'Deactivate'}</TableCell>
+                            <TableCell align="right"><Button id="del" variant="contained" color="secondary" value={row.id} onClick={handleDelete}><DeleteIcon /></Button></TableCell>
                         </TableRow>
                         ))}
                     </TableBody>
@@ -173,8 +196,8 @@ export default function SensorSettings() {
                                         value={order}
                                         onChange={handleChangeOrder}
                                         >
-                                            <MenuItem value={0}>Higher</MenuItem>
-                                            <MenuItem value={1}>Lower</MenuItem>
+                                            <MenuItem value={1}>Higher</MenuItem>
+                                            <MenuItem value={0}>Lower</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </div>
