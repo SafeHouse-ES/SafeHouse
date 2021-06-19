@@ -50,7 +50,7 @@ public class KafkaConsumer {
             List<Config> cfgs = repo.findByRoomIDAndMetric(data.getId(),metric);
             for (Config cfg : cfgs) {
                 if (cfg.issueCommand(data.getMetric(metric))) {
-                    String command = "{\"id\":"+cfg.getRoomID()+", \"device\":"+cfg.getDeviceID()+", \"value\":"+cfg.getDeviceValue()+"}";
+                    String command = "{\"id\":\""+cfg.getRoomID()+"\", \"device\":\""+cfg.getDeviceID()+"\", \"value\":"+cfg.getDeviceValue()+"}";
                     issueCommand(command);
                 }
             }
