@@ -75,7 +75,7 @@ pipeline {
                 
             }
         }
-
+        /*
         stage ('Maven-Deploy') {
             when {
                 expression { 
@@ -90,7 +90,7 @@ pipeline {
                     sh 'mvn deploy -f pom.xml -s settings.xml'
                 }
             }
-        }
+        }*/
 
         stage('Publish-Image'){
             when {
