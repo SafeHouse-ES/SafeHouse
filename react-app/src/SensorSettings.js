@@ -137,7 +137,7 @@ export default function SensorSettings() {
                             <TableCell>{row.roomID}</TableCell>
                             <TableCell>{row.metric}</TableCell>
                             <TableCell>{row.sensorValue}</TableCell>
-                            <TableCell>{row.order ? "Higher" : "Lower"}</TableCell>
+                            <TableCell>{row.order ? "Lower" : "Higher"}</TableCell>
                             <TableCell>{row.deviceID}</TableCell>
                             <TableCell>{row.deviceValue ? 'Activate' : 'Deactivate'}</TableCell>
                             <TableCell align="right"><Button id="del" variant="contained" color="secondary" value={row.id} onClick={handleDelete}><DeleteIcon /></Button></TableCell>
@@ -196,8 +196,8 @@ export default function SensorSettings() {
                                         value={order}
                                         onChange={handleChangeOrder}
                                         >
-                                            <MenuItem value={1}>Higher</MenuItem>
-                                            <MenuItem value={0}>Lower</MenuItem>
+                                            <MenuItem value={0}>Higher</MenuItem>
+                                            <MenuItem value={1}>Lower</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </div>
