@@ -35,4 +35,12 @@ public class RestApiController {
         Home lst = repo.findByRoomID(id);
         return lst;
     }
+
+    @CrossOrigin
+    @GetMapping("/device")
+    @ResponseBody
+    public Home device(String id, String dev) {
+        Home lst = repo.findByRoomIDAndSensors(id, dev);
+        return lst;
+    }
 }

@@ -1,24 +1,33 @@
 package pt.deti.es.g31.virtualhome;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
+@IdClass(RoomDevice.class)
 @Table(name = "p31_Home")
-public class Home {
+public class Home implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "ROOM_ID")
     @Id
     private String roomID;
-
+    
     @Column(name = "SENSORS")
+    @Id
     private String sensors;
+
+    @Column(name = "VALUE")
+    private double value;
 
 
     protected Home() {}
 
-    public Home(String roomID, String sensors) {
+    public Home(String roomID, String sensors, double value) {
         this.roomID = roomID;
         this.sensors = sensors;
+        this.value = value;
     }
 
     public String getRoomID() {
@@ -29,22 +38,8 @@ public class Home {
         return sensors;
     }
 
-    public boolean addSensors(String sensor) {
-        if (sensors.contains(sensor)) return false;
-        sensors += " " + sensor;
-        sensors.replaceAll("\\s+", " ");
-        return true;
-    }
-
-    public boolean removeSensors(String sensor) {
-        if (!sensors.contains(sensor)) return false;
-        sensors.replace(sensor, "");
-        sensors.replaceAll("\\s+", " ");
-        return true;
-    }
-
-    public boolean issueCommand(String sensor) {
-        return (sensors.contains(sensor));
+    public double getValue () {
+        return value;
     }
 
 }

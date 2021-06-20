@@ -22,8 +22,6 @@ public class KafkaConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(KafkaConsumer.class);
 
-    private static final String TOPIC = "es31_virtual_home";
-
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
@@ -41,34 +39,21 @@ public class KafkaConsumer {
             return;
         }
 
-        Home home = repo.findByRoomID(data.getRoomId());
+        Home home = repo.findByRoomIDAndSensors(data.getRoomId(), data.getDeviceId());
         if (home == null){
             if(data.getValue() != 0) {
-                home = new Home(data.getRoomId(), data.getDeviceId()+" ");
-                String command = "{\"id\":" + home.getRoomID() + ", \"sensors\":" + home.getSensors() + "}";
-                issueCommand(command);
+                home = new Home(data.getRoomId(), data.getDeviceId(), data.getValue());
                 repo.save(home);
             }
-        } else if (home.issueCommand(data.getDeviceId())){
+        } else{
             if (data.getValue() == 0){
-                home.removeSensors(data.getDeviceId());
-                String command = "{\"id\":" + home.getRoomID() + ", \"sensors\":" + home.getSensors() + "}";
-                issueCommand(command);
-                repo.save(home);
-            }
-        } else {
-            if (data.getValue() != 0) {
-                home.addSensors(data.getDeviceId());
-                String command = "{\"id\":" + home.getRoomID() + ", \"sensors\":" + home.getSensors() + "}";
-                issueCommand(command);
+                repo.delete(home);
+            } else {
+                repo.delete(home);
+                home = new Home(data.getRoomId(), data.getDeviceId(), data.getValue());
                 repo.save(home);
             }
         }
-    }
-
-    public void issueCommand(String message) {
-        this.kafkaTemplate.send(TOPIC, message);
-        log.info(String.format("Sent command %s", message));
     }
 
 }

@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface HomeRepo extends JpaRepository<Home,Long> {
 
-    Home findByRoomID(String roomID);
+    Home findByRoomID (String roomId);
+    Home findByRoomIDAndSensors (String roomId, String sensor);
 }
