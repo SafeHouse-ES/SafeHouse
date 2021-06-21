@@ -3,5 +3,4 @@ Feature: Users can view the metrics available in the WebUI
 
     Scenario: User access metrics
         When users want to get the data about the metrics
-        Then the list with the metrics keys is returned
-        And the api returns a success status
+        Then the list with the three metrics keys, temperature, luminosity, movement

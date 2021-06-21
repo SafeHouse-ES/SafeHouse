@@ -28,19 +28,19 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
     HttpHeaders headers;
     HttpEntity entity;
 
-    @Given("the kitchen luminosity sensor generates an alert")
+    @Given("the kitchen luminosity sensor is configured to detect when the room is darker then a threshold parameter")
     public void the_kitchen_luminosity_sensor_generates_an_alert() throws Throwable{
         producer.send("esp31-test-alert", "{\"alert_state\" : \"alerting\", \"description\" : \"Kitchen Dark Alert - Too dark in Kitchen\"}");
     }
 
-    @When("the alert is consumed")
+    @When("the alert is consumed by the system")
     public void the_alert_is_consumed() throws Throwable{
         //wait for the application to produce the response
         consumer.getLatch().await(10000, TimeUnit.MILLISECONDS);
     }
 
 
-    @Then("the type of alert should be available in the /alerts endpoint")
+    @Then("the alert should be available in the /alerts endpoint with the description that the kitchen is too dark")
     public void the_alert_should_be_available_in_the_endpoint() throws Throwable{
         headers = new HttpHeaders();
         entity = new HttpEntity(headers);
@@ -69,7 +69,7 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         entity = new HttpEntity(headers);
     }
 
-    @Then("the list with the metrics keys is returned")
+    @Then("the list with the three metrics keys, temperature, luminosity, movement")
     public void the_list_with_the_metrics_keys_is_returned() throws Throwable{
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/metrics", HttpMethod.GET, entity, String.class);
 
@@ -85,24 +85,18 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         assertEquals(3, size_a);
     }
 
-    @And("the api returns a success status")
-    public void the_api_returns_a_success_status() throws Throwable{
-        ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/metrics", HttpMethod.GET, entity, String.class);
-        assertEquals(200, result.getStatusCodeValue());
-    }
-
     @Given("the users does not have the sensor id that they need")
     public void the_users_does_not_have_the_sensor_id_that_they_need() throws Throwable{
         //For Readability only
     }
 
-    @When("the user requests sensors data")
+    @When("the user requests sensors data from all the sensors that exist")
     public void the_user_requests_sensors_data() throws Throwable{
         headers = new HttpHeaders();
         entity = new HttpEntity(headers);
     }
 
-    @Then("the list with the measurements from all the sensors is returned")
+    @Then("the list with the measurements from the sensors in the kitchen, livingroom, room1, room2 is returned")
     public void the_list_with_the_measurements_from_all_the_sensors_is_returned() throws Throwable{
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/all", HttpMethod.GET, entity, String.class);
 
@@ -116,14 +110,9 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
             e.printStackTrace();
         }
 
-        Assert.assertTrue(size_a  >  0);
+        Assert.assertTrue(size_a  >  4);
     }
 
-    @And("the api returns a success status 200")
-    public void the_api_returns_a_success_status_200() throws Throwable{
-        ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/all", HttpMethod.GET, entity, String.class);
-        assertEquals(200, result.getStatusCodeValue());
-    }
 
     @Given("the users have the sensor id that they want")
     public void the_users_have_the_sensor_id_that_they_want() throws Throwable{
@@ -136,7 +125,7 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
         entity = new HttpEntity(headers);
     }
 
-    @Then("the list with the measurements from the sensor specified is returned")
+    @Then("the list with the measurements from the kitchen sensor is returned")
     public void the_list_with_the_measurements_from_the_sensor_specified_is_returned() throws Throwable{
         ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/sensor/all?sensorId=Kitchen", HttpMethod.GET, entity, String.class);
 
@@ -159,12 +148,6 @@ public class StepDataprocessorApplicationTests extends DataprocessorApplicationT
             assertEquals("Kitchen", id);
         }
 
-    }
-
-    @And("the api returns success status 200")
-    public void the_api_returns_success_status_200() throws Throwable{
-        ResponseEntity<String> result = restTemplate.exchange(server+""+randomServerPort+""+"/sensor/all?sensorId=Kitchen", HttpMethod.GET, entity, String.class);
-        assertEquals(200, result.getStatusCodeValue());
     }
 
 
