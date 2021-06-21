@@ -19,18 +19,18 @@ public class StepMangementApiApplicationTests extends ManagementApiApplicationTe
     private final String devId = "test_dev";
     private final int newVal = 10;
 
-    @Given("there is a configuration")
+    @Given("there is a configuration for when temperature in Room1 is higher than forty")
     public void there_is_a_configuration() throws Throwable {
         Config cfg = new Config(senId,"temperature",0,(short) 0,devId,newVal);
         repo.save(cfg);
     }
 
-    @When("the sensor value violates a condition")
+    @When("temperature in Room1 is higher than forty")
     public void the_sensor_value_violates_a_condition() throws Throwable {
         sensorProducer.send(topic,"{\"id\":\"test_room\",\"temperature\":10.0,\"luminosity\":0.0,\"movement\":true,\"timestamp\":1623622582377}");
     }
 
-    @Then("an automatic command is sent")
+    @Then("an automatic command is sent to lower the temperature in Room1 to 25")
     public void an_automatic_command_is_sent() throws Throwable {
         cmdConsumer.getLatch().await(10000, TimeUnit.MILLISECONDS);
         String payload = cmdConsumer.getPayload();
