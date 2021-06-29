@@ -13,4 +13,6 @@ Visualize dados em tempo real dos sensores (temperatura, umidade e luminosidade)
 
 Também inclui uma interface, onde o cliente pode adicionar novos dispositivos, exigindo uma interface específica na forma de comandos, permitindo que os clientes programem os dispositivos adicionados para reagir a algumas condições em tempo real.
 
-![smarthouse](smarthouse.jpg)
+<p align="center">
+  <img src="smarthouse.jpg" />
+</p>
