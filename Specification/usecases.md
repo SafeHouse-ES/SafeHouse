@@ -4,7 +4,7 @@ title: Casos de Uso
 parent: Especificações
 ---
 
-# Use Cases
+# Casos de Uso
 
 ## 1.
 

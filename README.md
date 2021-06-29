@@ -7,8 +7,8 @@ permalink: /
 
 # SafeHouse
 
-SafeHouse controls the customer's home automatically according to their needs.
+SafeHouse controla a casa do cliente automaticamente de acordo com suas necessidades.
 
-Visualize real time data from sensors (temperature, humidity and luminosity), complemented with alerts and the possibility to monitorize historical values. 
+Visualize dados em tempo real dos sensores (temperatura, umidade e luminosidade), complementados com alertas e a possibilidade de monitorar valores históricos.
 
-It also includes an interface, where the customer can add new devices, requiring a specific interface specified in the form of commands, allowing the clients to program the added devices to react to some conditions in real-time.
+Também inclui uma interface, onde o cliente pode adicionar novos dispositivos, exigindo uma interface específica na forma de comandos, permitindo que os clientes programem os dispositivos adicionados para reagir a algumas condições em tempo real.
