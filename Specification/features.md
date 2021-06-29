@@ -9,3 +9,4 @@ parent: Specification
 ## Dashboard
 ## Temperatura
 ## Iluminação
+## Movimento
