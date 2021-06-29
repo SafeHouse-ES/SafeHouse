@@ -21,13 +21,12 @@ nav_order: 6
 ![historic](historic.png)
   
   
-### Tabela com os dados de todos os sensores de uma divi com um minuto de intervalo.
+### Tabela com os dados de todos os sensores de uma divisão com um minuto de intervalo.
 
 ***
 
 ## Notificações
-  
-  
+                                                                                                                                                                                                                                                                                                                              
 ![notif](notif.png)
   
   
