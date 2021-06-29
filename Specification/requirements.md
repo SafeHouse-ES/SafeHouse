@@ -1,9 +1,7 @@
 ---
 layout: default
 title: Requirements
-nav_order: 4
-has_children: false
-permalink: specification/requirements
+parent: Specification
 ---
 
 # Requirements
