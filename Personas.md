@@ -4,6 +4,7 @@ title: Requirement Analysis
 nav_order: 3
 ---
 #Personas
+
 ##Júlia:
 
 A Júlia é uma mulher de 34 anos, possui dois filhos de 10 e 13 anos e trabalha como professora numa escola primária.
@@ -11,18 +12,23 @@ Ao longo da semana apresenta uma vida muito atarefada visto que, ambos os seus f
 Ela apresenta também um fascínio pelas novas tecnologias e gostava de conseguir automatizar algumas tarefas simples do seu dia-a-dia.
 
 ##Eugénio:
+
 O Eugénio é um homem de 48 anos, é casado, possui um filho com 24 anos e trabalha como arquiteto.
 Têm como hábito regar o seu quintal todos os dias e tinha interesse em o poder fazer também à distância e de uma forma programada .
 Ele gosta também de aos fins de semana no final da tarde, se encontrar com os seus companheiros de escola, dedicando-se a analisar a Arte nas músicas que tocavam na rádio na sua juventude.
 
 ##Diana:
+
 A Diana é uma mulher de 28 anos, casada, não possui filhos, e trabalha como modelo.
 Ela adora cuidar de si mesma, como tal faz de tudo para manter uma vida extremamente saudável. Gosta de se deitar cedo sempre à mesma hora e fazer exercício físico sendo sempre muito cautelosa.
 Ela possui também duas casas, e gostava de poder verificar o estado da casa de férias sem precisar se deslocar fisicamente, visto que por vezes recebe contas anormais de água e de luz.
 
 #Cenários
+
 ##Cenário 1
+
 A Júlia saiu do trabalho e dirige-se para as explicações do filho, como ainda têm de esperar cerca de meia hora, Júlia abre a aplicação e aproveita para fechar as janelas remotamente e configurar o aquecedor central para manter a sua casa à temperatura ambiente.
+
 ##Cenário 2
 
 O Eugénio, após chegar a casa do seu encontro semanal, abre a aplicação para aplicar um comando no rádio da cozinha para ativar a sua playlist favorita, ao mesmo tempo verifica se as suas plantas precisam de ser regadas novamente no final da tarde e caso seja necessário, ativa o seu sistema de rega automático.
