@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Manual
+title: Manual UI
 nav_order: 6
 ---
 
-# Manual
+# Manual UI
 
 ## Valores dos sensores em Tempo Real
                                                                                                                                                                       
