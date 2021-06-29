@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Manual
+title: Manual UI
 nav_order: 6
 ---
 
-# Manual
+# Manual UI
 
 ## Valores dos sensores em Tempo Real
                                                                                                                                                                       
 ![home](home.png)
   
   
-### Home page containing real time sensor values for every division, updating every five seconds. Página principal que contém os valores dos sensores para todas as divisões, atualizando a cada 5 segundos.
+### Página principal que contém os valores dos sensores para todas as divisões, atualizando a cada 5 segundos.
 
 ***
 
@@ -21,13 +21,12 @@ nav_order: 6
 ![historic](historic.png)
   
   
-### Tabela com os dados de todos os sensores com um minuto de intervalo.
+### Tabela com os dados de todos os sensores de uma divisão com um minuto de intervalo.
 
 ***
 
 ## Notificações
-  
-  
+                                                                                                                                                                                                                                                                                                                              
 ![notif](notif.png)
   
   
@@ -42,7 +41,7 @@ nav_order: 6
 ![settings](settings.png)
   
   
-### É apresentada uma tabela que contém todas as regras criadas e um campo onde se pode criar uma regra, preenchendo a informação necessária.
+### É apresentada uma tabela que contém todas as regras criadas, com a possibilidade de as apagar diretamente, e um campo onde se pode criar uma regra, preenchendo a informação necessária.
 ### Descrição dos campos:
 - Divisão onde o qual reside o sensor
 - A métrica para a qual se vai aplicar a regra
