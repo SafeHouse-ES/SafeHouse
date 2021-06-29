@@ -14,14 +14,8 @@ parent: Specification
 |:---------------|:------------------------------------------------------------------------------------------------------------------|
 | Ator Principal | Habitante                                                                                                        |
 | Função         | O Habitante procura obter uma lista com os valores obtidos pelo sensor de consumo de eletricidade ao longo da última hora   |
-| Pré-condições | 
-1. Sensor indicado foi adicionado na plataforma
-2. Sensor indicado está ligado à rede interna
-3. Sensor indicado está em funcionamento |
-| Fluxo normal   | 
-1. O Habitante abre a página principal da aplicação da plataforma
-2. O Habitante seleciona a tab “Historic Values” 
-3. O Habitante seleciona na nova página a opção “Last 1 Hour” |
+| Pré-condições | 1. Sensor indicado foi adicionado na plataforma <br/><br/> 2. Sensor indicado está ligado à rede interna <br/><br/> 3. Sensor indicado está em funcionamento <br/><br/> |
+| Fluxo normal   | 1. O Habitante abre a página principal da aplicação da plataforma <br/><br/> 2. O Habitante seleciona a tab “Historic Values” <br/><br/> 3. O Habitante seleciona na nova página a opção “Last 1 Hour” <br/><br/> |
 | Prioridade | Normal |
 
 </div>
