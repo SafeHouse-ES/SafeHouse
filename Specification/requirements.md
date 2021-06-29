@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Requirements
-parent: Specification
+title: Requisitos
+parent: Especificações
 ---
 
 # Requirements

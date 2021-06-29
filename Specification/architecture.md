@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Arquitetura
-parent: Specification
+parent: Especificações
 ---
 
 # Diagrama de Arquitetura

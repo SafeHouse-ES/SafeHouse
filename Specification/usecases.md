@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Use Cases
-parent: Specification
+title: Casos de Uso
+parent: Especificações
 ---
 
 # Use Cases

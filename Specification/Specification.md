@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Specification
+title: Especificações
 nav_order: 4
 has_children: true
-permalink: specification
+permalink: Especificações
 ---
