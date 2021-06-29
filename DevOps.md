@@ -1,3 +1,4 @@
+---
 layout: default
 title: DevOps
 nav_order: 7
@@ -9,4 +10,5 @@ Na tabela seguinte, estão presentes as componentes que constituem o sistema ass
 | Componente | Informação | Ambiente de runtime |
 | ---------- | ---------- | ------------------- |
 | Webapp     | A webapp desenvolvida em React permite ao utilizador verificar um histórico de dados e de alertas, assim como configurar regras para o envio de comandos | A aplicação corre num container de docker, acessível pelo endereço 192.168.160.87 e porto 31004 |
+| DataProcessor | O Dataprocessor desenvolvido em Spring tem por objetivo processar os dados armazenados no Influx, assim como os alertas, e expor estes em endpoints REST | A aplicação corre num container de docker, acessível pelo endereço 192.168.160.87 e porto 31004 |
 # Outros detalhes
