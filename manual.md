@@ -41,7 +41,7 @@ nav_order: 6
 ![settings](settings.png)
   
   
-### É apresentada uma tabela que contém todas as regras criadas e um campo onde se pode criar uma regra, preenchendo a informação necessária.
+### É apresentada uma tabela que contém todas as regras criadas, com a possibilidade de as apagar diretamente, e um campo onde se pode criar uma regra, preenchendo a informação necessária.
 ### Descrição dos campos:
 - Divisão onde o qual reside o sensor
 - A métrica para a qual se vai aplicar a regra
