@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Architecture
+title: Arquitetura
 nav_order: 2
 ---
 # Diagrama

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Requirement Analysis
+title: Análise de Requisitos
 nav_order: 3
 ---
 # Personas
@@ -39,7 +39,7 @@ A Diana, ao final do dia, acede à aplicação para verificar o histórico dos v
 
 # Motivação
 
-No contexto atual, cada vez mais assistimos ao processo de digitalização aplicado em vários setores, com as finalidade de deixar os negócios mais facilmente acessíveis em qualquer região do globo; diminuir os gastos do negócio, ou simplesmente por uma questão das interfaces digitais conseguirem explorar o critério de usabilidade “Recognition rather than recall” de uma forma muito inteligente, comparado com as interfaces tradicionais humanas.
+No contexto atual, cada vez mais assistimos ao processo de digitalização aplicado em vários setores, com a finalidade de deixar os negócios mais facilmente acessíveis em qualquer região do globo; diminuir os gastos do negócio, ou simplesmente por uma questão das interfaces digitais conseguirem explorar o critério de usabilidade “Recognition rather than recall” de uma forma muito inteligente, comparado com as interfaces tradicionais humanas.
 Deste modo, acreditamos que o SafeHouse pode simplificar o uso dos seus dispositivos durante o seu dia-a-dia, sendo a nossa ideia principal o desenvolvimento de uma interface digital que permitisse agregar todas as tarefas num único sítio e que pudesse igualmente ser acessível remotamente.
 
 # Objetivos

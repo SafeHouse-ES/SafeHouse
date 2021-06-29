@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Features
-parent: Specification
+parent: Especificações
 ---
 
 # Features

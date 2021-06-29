@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Modelos de Mensagens
-parent: Specification
+parent: Especificações
 ---
 
 # Estrutura das Mensagens

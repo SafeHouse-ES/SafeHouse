@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Requirements
-parent: Specification
+title: Requisitos
+parent: Especificações
 ---
 
-# Requirements
+# Requisitos
 
 - Internet
 - Sensores de iluminação, temperatura e movimento devidamente instalados.
