@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Home
+title: Testes
 nav_order: 5
-permalink: /
 ---
 
 # Testes
