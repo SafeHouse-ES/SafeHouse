@@ -6,7 +6,7 @@ parent: Especificações
 
 # Requisitos
 
-- Internet
+- Internet.
 - Sensores de iluminação, temperatura e movimento devidamente instalados.
-- Ar condicionado instalado
-- Navegador Web
+- Ar condicionado e lâmpadas inteligentes instaladas, para o seu controlo por parte do sistema.
+- Navegador Web.
