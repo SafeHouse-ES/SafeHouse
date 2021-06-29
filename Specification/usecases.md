@@ -34,7 +34,7 @@ parent: Specification
 
 <div markdown="1">
 | ID | Verificar os valores de temperature, luminusidade e se há movimento numa determinada divisão |
-|-|-|
+|:---|:---|
 | Ator Principal     | Utilizador |
 | Função | O Utilizador quer verificar os valores de temperature, luminusidade e se há movimento numa determinada divisão. |
 | Fluxo normal | The user accesses the web App                                                                                 The user selects a room to check the movement sensor                                                                                 The user selects a day to check the CO2, temperature, light, humidity and movement sensor values |
