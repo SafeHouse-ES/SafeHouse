@@ -16,7 +16,7 @@ parent: Specification
 
 TESTE (apagar dps):
 
-<div class="code-example" markdown="1">
+<div markdown="1">
 
 | head1        | head two          | three |
 |:-------------|:------------------|:------|
@@ -24,6 +24,8 @@ TESTE (apagar dps):
 | out of stock | good and plenty   | nice  |
 | ok           | good `oreos`      | hmm   |
 | ok           | good `zoute` drop | yumm  |
+
+</div>
 
  <table style="width:100%">
   <tr>
