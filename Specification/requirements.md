@@ -7,5 +7,6 @@ parent: Specification
 # Requirements
 
 - Internet
-- Sensores de iluminação e temperatura instalados
+- Sensores de iluminação, temperatura e movimento devidamente instalados.
+- Ar condicionado instalado
 - Navegador Web
