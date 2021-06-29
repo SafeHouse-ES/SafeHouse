@@ -11,7 +11,7 @@ nav_order: 6
 ![home](home.png)
   
   
-### Home page containing real time sensor values for every division, updating every five seconds. Página principal que contém os valores dos sensores para todas as divisões, atualizando a cada 5 segundos.
+### Página principal que contém os valores dos sensores para todas as divisões, atualizando a cada 5 segundos.
 
 ***
 
